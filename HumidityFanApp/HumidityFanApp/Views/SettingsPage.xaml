@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="HumidityFanApp.Views.SettingsPage"
+             xmlns:vm="clr-namespace:HumidityFanApp.ViewModels"
+             Title="{Binding Title}">
+    
+    <ContentPage.BindingContext>
+        <vm:SettingsViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="Accent">#96d1ff</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Server Name"/>
+            <Entry Text="{Binding ServerName}" HorizontalOptions="FillAndExpand"></Entry>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Humidity Threshold"/>
+            <Switch IsToggled="{Binding HumidityOnOff}"></Switch>
+            <Entry Text="{Binding HumidityThreshold}" IsEnabled="{Binding HumidityOnOff}" WidthRequest="50" Keyboard="Numeric"></Entry>
+        </StackLayout>
+        <Button Text="Save" Command="{Binding SaveSettings}">
+        </Button>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Fan Switch"/>
+            <Switch IsToggled="{Binding FanOnOff}"></Switch>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
